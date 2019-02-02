@@ -27,25 +27,22 @@ namespace ConsoleApp1
         public static bool Contains(Node root, int value)
         {
             // Is this the node we look for?
-            bool retVal = root.Value == value;
-            if (retVal) return retVal;
+            if (root.Value == value) return true;
 
             // search left
             if (root.Left != null)
             {
-                retVal = Contains(root.Left, value);
-                if (retVal) return retVal;
+                if (Contains(root.Left, value)) return true;
             }
 
             // search right
             if (root.Right != null)
             {
-                retVal = Contains(root.Right, value);
-                if (retVal) return retVal;
+                if (Contains(root.Right, value)) return true;
             }
 
             // not found
-            return retVal;
+            return false;
         }
 
         public static void Main(string[] args)
