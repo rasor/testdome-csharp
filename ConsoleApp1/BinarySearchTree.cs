@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Linq;
 
 namespace ConsoleApp1
 {
@@ -52,6 +53,18 @@ namespace ConsoleApp1
             return retVal;
         }
 
+        public static bool Contains3(Node root, int value)
+        {
+            // Is this the node we look for?
+            if (root.Value == value) return true;
+
+            // Children contains? - exec each side in parallel
+            var children = new Node[] { root.Left, root.Right };
+            var foundList = children.AsParallel().Where(n => (n != null) && n.Contains(value)).ToArray();
+
+            var retVal = foundList.Length > 0;
+            return retVal;
+        }
         public static bool Contains2(Node root, int value)
         {
             // Is this the node we look for?
@@ -60,13 +73,13 @@ namespace ConsoleApp1
             // search left
             if (root.Left != null)
             {
-                if (Contains(root.Left, value)) return true;
+                if (Contains2(root.Left, value)) return true;
             }
 
             // search right
             if (root.Right != null)
             {
-                if (Contains(root.Right, value)) return true;
+                if (Contains2(root.Right, value)) return true;
             }
 
             // not found
@@ -83,14 +96,19 @@ namespace ConsoleApp1
             sw.Start();
             Console.WriteLine(Contains2(n2, 3));
             sw.Stop();
-            Console.WriteLine("Time w. static: {0} ms", sw.ElapsedMilliseconds);
-            // 22 ms
+            Console.WriteLine("Time w. static: {0} ticks", sw.ElapsedTicks);
+            // 22 ms - 200k ticks
 
             sw.Restart();
             Console.WriteLine(Contains(n2, 3));
             sw.Stop();
-            Console.WriteLine("Time w. inst.: {0} ms", sw.ElapsedMilliseconds);
-            // 0 ms
+            Console.WriteLine("Time w. inst.: {0} ticks", sw.ElapsedTicks);
+            // 0 ms - 2k ticks
+
+            sw.Restart();
+            Console.WriteLine(Contains3(n2, 3));
+            sw.Stop();
+            Console.WriteLine("time w. inst. and parallel: {0} ticks", sw.ElapsedTicks);
 
             Console.ReadKey();
         }
