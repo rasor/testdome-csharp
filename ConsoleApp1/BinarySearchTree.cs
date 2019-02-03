@@ -21,11 +21,38 @@ namespace ConsoleApp1
             Left = left;
             Right = right;
         }
+
+        public bool Contains(int value)
+        {
+            // Is this the node we look for?
+            if (this.Value == value) return true;
+
+            // search left
+            if (this.Left != null)
+            {
+                if (this.Left.Contains(value)) return true;
+            }
+
+            // search right
+            if (this.Right != null)
+            {
+                if (this.Right.Contains(value)) return true;
+            }
+
+            // not found
+            return false;
+        }
     }
 
     public class BinarySearchTree
     {
         public static bool Contains(Node root, int value)
+        {
+            var retVal = root.Contains(value);
+            return retVal;
+        }
+
+        public static bool Contains2(Node root, int value)
         {
             // Is this the node we look for?
             if (root.Value == value) return true;
@@ -54,9 +81,16 @@ namespace ConsoleApp1
 
             var sw = new Stopwatch();
             sw.Start();
+            Console.WriteLine(Contains2(n2, 3));
+            sw.Stop();
+            Console.WriteLine("Time w. static: {0} ms", sw.ElapsedMilliseconds);
+            // 22 ms
+
+            sw.Restart();
             Console.WriteLine(Contains(n2, 3));
             sw.Stop();
-            Console.WriteLine("Time: {0} ms", sw.ElapsedMilliseconds);
+            Console.WriteLine("Time w. inst.: {0} ms", sw.ElapsedMilliseconds);
+            // 0 ms
 
             Console.ReadKey();
         }
