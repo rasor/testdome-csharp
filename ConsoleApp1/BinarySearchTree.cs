@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 
 namespace ConsoleApp1
 {
@@ -51,7 +52,13 @@ namespace ConsoleApp1
             Node n3 = new Node(3, null, null);
             Node n2 = new Node(2, n1, n3);
 
+            var sw = new Stopwatch();
+            sw.Start();
             Console.WriteLine(Contains(n2, 3));
+            sw.Stop();
+            Console.WriteLine("Time: {0} ms", sw.ElapsedMilliseconds);
+
+            Console.ReadKey();
         }
     }
 
