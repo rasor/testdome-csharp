@@ -86,7 +86,7 @@ namespace ConsoleApp1
             return false;
         }
 
-        public static void Main(string[] args)
+        public static void Main04(string[] args)
         {
             Node n1 = new Node(1, null, null);
             Node n3 = new Node(3, null, null);
