@@ -32,7 +32,7 @@ namespace ConsoleApp1
         /// because there are two array elements less than 4.
         /// </summary>
         /// <param name="args"></param>
-        public static void Main(string[] args)
+        public static void Main06(string[] args)
         {
             Console.WriteLine(SortedSearch.CountNumbers(new int[] { 1, 3, 5, 7 }, 4));
             Console.ReadKey();
