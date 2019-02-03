@@ -52,7 +52,7 @@ namespace ConsoleApp1
         /// 2 and 4 (or 4 and 2) as 5 + 5 = 10
         /// </summary>
         /// <param name="args"></param>
-        public static void Main(string[] args)
+        public static void Main05(string[] args)
         {
             Tuple<int, int> indices = FindTwoSum(new List<int>() { 3, 1, 5, 7, 5, 9 }, 10);
             if (indices != null)

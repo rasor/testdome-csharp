@@ -3,9 +3,9 @@ using System.Collections.Generic;
 
 namespace ConsoleApp1
 {
+    // https://www.testdome.com/tests/c-sharp-online-test/18
     class Palindrome
     {
-        // https://www.testdome.com/tests/c-sharp-online-test/18
         public static bool IsPalindrome(string word)
         {
             string w2 = "";
@@ -19,6 +19,7 @@ namespace ConsoleApp1
         public static void Main01(string[] args)
         {
             Console.WriteLine(Palindrome.IsPalindrome("Deleveled"));
+            Console.ReadKey();
         }
     }
 
