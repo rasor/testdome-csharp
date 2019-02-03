@@ -9,12 +9,13 @@ namespace ConsoleApp1
     {
         public static Tuple<int, int> FindTwoSum(IList<int> list, int sum)
         {
+            var found = false;
             //int leftVal;
             //int rightVal;
             // Create sets of all pairs
             //List<Tuple<int, int>> pairIndexes = new List<Tuple<int, int>>();
             //List<Tuple<int, int>> pairValues = new List<Tuple<int, int>>();
-            var pairIndexesArr = new Tuple<int, int>[list.Count * 10];
+            var pairIndexesArr = new Tuple<int, int>[list.Count * 3];
             int outputArrIndex = 0;
             for (int left = 0; left < list.Count -1; left++)
             {
@@ -29,7 +30,13 @@ namespace ConsoleApp1
                         //pairIndexes.Add(new Tuple<int, int>(left, right));
                         pairIndexesArr[outputArrIndex] = new Tuple<int, int>(left, right);
                         outputArrIndex++;
+                        found = true;
+                        break;
                     }
+                }
+                if (found)
+                {
+                    break;
                 }
             }
             if (pairIndexesArr.Length == 0) return null;
