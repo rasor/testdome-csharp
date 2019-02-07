@@ -7,13 +7,14 @@ namespace ConsoleApp1
     // https://www.testdome.com/tests/c-sharp-online-test/18
     class Prefix
     {
-        public static IEnumerable<string> Prefixes(IEnumerable<string> words, int length)
+        //System.Linq.Enumerable.DistinctIterator<string>
+        public static IQueryable<string> Prefixes(IEnumerable<string> words, int length)
         {
-            var list = words.Where(w => w.Length > 2).Select(w => w.Substring(0, 3)).Distinct();
+            IQueryable<string> list = words.Where(w => w.Length > 2).Select(w => w.Substring(0, 3)).Distinct().AsQueryable();
             return list;
         }
 
-        public static void Main10(string[] args)
+        public static void Main(string[] args)
         {
             foreach (var p in Prefixes(new string[] { "many", "manly", "men", "maybe", "my" }, 3))
                 Console.WriteLine(p);

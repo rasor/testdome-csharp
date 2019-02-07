@@ -18,12 +18,17 @@ namespace ConsoleApp1
                     branchList.Add(group.First(), false);
                 }
             }
-            return branchList.Keys.Count;
+            var count = branchList.Keys.Count;
+            if (tree.Length == 0) return 0;
+            if (count == 0 && tree.Length > 0) return 1;
+            return count;
         }
 
-        public static void Main(string[] args)
+        public static void Main13(string[] args)
         {
             Console.WriteLine(Branches.Count(1, 3, 1, -1, 3));
+            Console.WriteLine(Branches.Count(-1));
+            Console.WriteLine(Branches.Count());
             Console.ReadKey();
         }
     }
